@@ -6,7 +6,8 @@ import PathFinder from './PathFinder';
 export interface IPathFinder extends IConstructorRegistry<PathFinder> {}
 export declare class PathFinderRegistry
   extends ConstructorRegistry<PathFinder>
-  implements IPathFinder {
+  implements IPathFinder
+{
   constructor();
 }
 export declare const instance: PathFinderRegistry;

@@ -1,18 +1,16 @@
 "use strict";
-var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
+var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, state, kind, f) {
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
+    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
-var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (receiver, privateMap, value) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to set private field on non-instance");
-    }
-    privateMap.set(receiver, value);
-    return value;
+var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
+    if (kind === "m") throw new TypeError("Private method is not writable");
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
+    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
-var _movementCost;
+var _Path_movementCost;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Path = void 0;
 const PathFinderRegistry_1 = require("./PathFinderRegistry");
@@ -20,7 +18,7 @@ const Tileset_1 = require("@civ-clone/core-world/Tileset");
 class Path extends Tileset_1.Tileset {
     constructor() {
         super(...arguments);
-        _movementCost.set(this, Infinity);
+        _Path_movementCost.set(this, Infinity);
     }
     end() {
         return this.entries()[this.length - 1];
@@ -41,10 +39,10 @@ class Path extends Tileset_1.Tileset {
         return path;
     }
     movementCost() {
-        return __classPrivateFieldGet(this, _movementCost);
+        return __classPrivateFieldGet(this, _Path_movementCost, "f");
     }
     setMovementCost(movementCost) {
-        __classPrivateFieldSet(this, _movementCost, movementCost);
+        __classPrivateFieldSet(this, _Path_movementCost, movementCost, "f");
     }
     push(...tiles) {
         tiles.forEach((tile) => {
@@ -60,6 +58,6 @@ class Path extends Tileset_1.Tileset {
     }
 }
 exports.Path = Path;
-_movementCost = new WeakMap();
+_Path_movementCost = new WeakMap();
 exports.default = Path;
 //# sourceMappingURL=Path.js.map

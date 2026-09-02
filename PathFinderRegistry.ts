@@ -8,7 +8,8 @@ export interface IPathFinder extends IConstructorRegistry<PathFinder> {}
 
 export class PathFinderRegistry
   extends ConstructorRegistry<PathFinder>
-  implements IPathFinder {
+  implements IPathFinder
+{
   constructor() {
     super(PathFinder);
   }
