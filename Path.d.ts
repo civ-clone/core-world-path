@@ -9,7 +9,7 @@ export interface IPath extends ITileset {
   start(): Tile;
 }
 export declare class Path extends Tileset implements IPath {
-  #private;
+  private _movementCost;
   end(): Tile;
   static for(
     unit: Unit,

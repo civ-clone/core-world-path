@@ -8,7 +8,9 @@ export interface IPathFinder {
   unit(): Unit;
 }
 export declare class PathFinder implements IPathFinder {
-  #private;
+  private _end;
+  private _start;
+  private _unit;
   constructor(unit: Unit, start: Tile, end: Tile);
   end(): Tile;
   generate(): Path;

@@ -10,18 +10,18 @@ export interface IPathFinder {
 }
 
 export class PathFinder implements IPathFinder {
-  #end: Tile;
-  #start: Tile;
-  #unit: Unit;
+  private _end: Tile;
+  private _start: Tile;
+  private _unit: Unit;
 
   constructor(unit: Unit, start: Tile, end: Tile) {
-    this.#end = end;
-    this.#start = start;
-    this.#unit = unit;
+    this._end = end;
+    this._start = start;
+    this._unit = unit;
   }
 
   end(): Tile {
-    return this.#end;
+    return this._end;
   }
 
   generate(): Path {
@@ -31,11 +31,11 @@ export class PathFinder implements IPathFinder {
   }
 
   start(): Tile {
-    return this.#start;
+    return this._start;
   }
 
   unit(): Unit {
-    return this.#unit;
+    return this._unit;
   }
 }
 

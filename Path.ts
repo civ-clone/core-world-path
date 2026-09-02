@@ -15,7 +15,7 @@ export interface IPath extends ITileset {
 }
 
 export class Path extends Tileset implements IPath {
-  #movementCost: number = Infinity;
+  private _movementCost: number = Infinity;
 
   end(): Tile {
     return this.entries()[this.length - 1];
@@ -48,11 +48,11 @@ export class Path extends Tileset implements IPath {
   }
 
   movementCost(): number {
-    return this.#movementCost;
+    return this._movementCost;
   }
 
   setMovementCost(movementCost: number): void {
-    this.#movementCost = movementCost;
+    this._movementCost = movementCost;
   }
 
   push(...tiles: Tile[]) {
